@@ -2,7 +2,7 @@ from tkinter import messagebox
 from tkinter import *
 
 
-def SignUp(route=''):
+def SignUp():
     w = Tk()
     w.geometry('350x800')
     w.title(' S I G N  U P ')
@@ -96,12 +96,13 @@ def SignUp(route=''):
     l = ('Consolas', 13)
     l7.config(font=l)
     l7.place(x=80, y=610)
-    # username entry for username entry
+    # radio group
     v = StringVar(value='customer')
     Radiobutton(w, text='Beautician', variable=v, value='beautician', bg='white').place(x=80, y=640)
     Radiobutton(w, text='Customer', variable=v, value='customer', bg='white').place(x=180, y=640)
 
     # Command
+    # -------------------------------------------- Sign Up Button  Command --------------------------------------------
     def cmd():
         print(username.get())
         print(email.get())
@@ -110,19 +111,18 @@ def SignUp(route=''):
         print(phone.get())
         print(password.get())
         print(v.get())
+        # check if all fields are filled
         if username.get() == '' or email.get() == '' or fullname.get() == '' or address.get() == '' or phone.get() == '' or password.get() == '':
             messagebox.showerror('Error', 'Please fill all the fields')
 
         else:
+            # storing data to file
             from Model.User import User
             user = User(Username=username.get(), email=email.get(), Fullname=fullname.get(), Address=address.get(),
                         phone_number=phone.get(), Password=password.get(), user_type=v.get())
             user.write_to_file()
             messagebox.showinfo('Success', 'Account Created Successfully')
             w.destroy()
-            if len(route) > 0:
-                from Views import login
-                login.Login()
 
     # Sign Up Button
     def bttn(x, y, text, ecolor, lcolor):
@@ -131,8 +131,8 @@ def SignUp(route=''):
             myButton1['foreground'] = lcolor  # when mouse leaves the button it changes color
 
         def on_leavea(e):
-            myButton1['background'] = lcolor
-            myButton1['foreground'] = ecolor
+            myButton1['background'] = lcolor  # when mouse enters the button it changes color
+            myButton1['foreground'] = ecolor  # when mouse leaves the button it changes color
 
         myButton1 = Button(w, text=text,
                            width=20,

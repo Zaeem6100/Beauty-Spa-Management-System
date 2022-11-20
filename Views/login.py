@@ -54,7 +54,6 @@ def Login():
 
     # button Action for Sign Up
     def Sign():
-        w.destroy()
         import SignUp as s
         s.SignUp()
 
@@ -69,18 +68,21 @@ def Login():
         for i in user:
             if i.Username == e1.get() and i.Password == e2.get():
                 messagebox.showinfo("LOGIN SUCCESSFULLY", "         W E L C O M E        " + i.user_type.upper())
+                # check if user is admin or not
                 if i.user_type == 'Admin':
                     w.destroy()
                     from Views import manager as m
                     m.manager()
-                    break
+                    exit(0)
                 elif i.user_type == 'customer':
                     w.destroy()
                     from Views import customer
                     customer.customer()
+                    exit(0)
 
         messagebox.showwarning("LOGIN FAILED", "        PLEASE TRY AGAIN        ")
 
+    #  sign up Button_with hover effect
     def bttn2(x, y, text, ecolor, lcolor):
         def on_entera2(e):
             myButton2['background'] = ecolor  # ffcc66
@@ -104,7 +106,7 @@ def Login():
         myButton2.bind("<Leave>", on_leavea2)
         myButton2.place(x=x, y=y)
 
-    # Button_with hover effect
+    # Login Button_with hover effect
     def bttn(x, y, text, ecolor, lcolor):
         def on_entera(e):
             myButton1['background'] = ecolor  # ffcc66

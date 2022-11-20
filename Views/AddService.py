@@ -47,16 +47,15 @@ def AddNewService():
         print('Name: ', name.get())
         print('Price: ', price.get())
         import Model.Services as s
-        s1 =s.Services(name.get(), price.get())
+        s1 = s.Services(name.get(), price.get())
         s1.write_to_file()
         messagebox.showinfo('Success', 'Service Added Successfully')
 
-
-    # Sign Up Button
+    # Add Service  Button
     def bttn(x, y, text, ecolor, lcolor):
         def on_entera(e):
-            myButton1['background'] = ecolor # when mouse enters the button it changes color
-            myButton1['foreground'] = lcolor   # when mouse leaves the button it changes color
+            myButton1['background'] = ecolor  # when mouse enters the button it changes color
+            myButton1['foreground'] = lcolor  # when mouse leaves the button it changes color
 
         def on_leavea(e):
             myButton1['background'] = lcolor

@@ -20,21 +20,24 @@ def Table(data, columns, headings, title="Table"):
 
     game_frame = Frame(ws)
     game_frame.pack()
-    # scrollbar
+    # scrollbar config
     game_scroll = Scrollbar(game_frame)
     game_scroll.pack(side=RIGHT, fill=Y)
     game_scroll = Scrollbar(game_frame, orient='horizontal')
     game_scroll.pack(side=BOTTOM, fill=X)
-
     my_game = ttk.Treeview(game_frame, yscrollcommand=game_scroll.set, xscrollcommand=game_scroll.set)
     my_game.pack()
     game_scroll.config(command=my_game.yview)
     game_scroll.config(command=my_game.xview)
+
+    # columns
     my_game['columns'] = columns
+    #  1st heading with serial number
     my_game.heading("#0", text="Sr#", anchor=W)
+    # load headings from headings list
     for i in headings:
         my_game.heading(i, text=i, anchor=W)
-
+    # load data from data list
     for i in range(len(data)):
         # add serial number in first column
         my_game.insert(parent='', index='end', iid=i, text=i + 1, values=data[i])
