@@ -103,6 +103,15 @@ class User:
                 print(line)
         return data
 
+    def checkUsernameExists(self, filename=os.path.join(os.path.dirname(os.path.dirname(__file__)), "Database\AMUser.txt")):
+        with open(filename, "r") as file:
+            for line in file:
+                line = line.strip()
+                line = line.split(",")
+                if line[0] == self.Username:
+                    return True
+            return False
+
 
 if __name__ == '__main__':
     model = User(Username='zaeem12445678932', Password='1234', Fullname='Zaeem6100', Address='qwerty',
