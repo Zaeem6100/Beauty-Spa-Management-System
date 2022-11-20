@@ -111,13 +111,17 @@ def SignUp():
         print(phone.get())
         print(password.get())
         print(v.get())
+        from Model.User import User
         # check if all fields are filled
         if username.get() == '' or email.get() == '' or fullname.get() == '' or address.get() == '' or phone.get() == '' or password.get() == '':
             messagebox.showerror('Error', 'Please fill all the fields')
 
+        elif User.checkUsernameExists(username.get()):
+            messagebox.showerror('Error', 'Username already exists')
+
         else:
             # storing data to file
-            from Model.User import User
+
             user = User(Username=username.get(), email=email.get(), Fullname=fullname.get(), Address=address.get(),
                         phone_number=phone.get(), Password=password.get(), user_type=v.get())
             user.write_to_file()

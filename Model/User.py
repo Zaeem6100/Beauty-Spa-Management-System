@@ -68,9 +68,9 @@ class User:
 
 
 if __name__ == '__main__':
-    model = User(Username='zaeem12445678932', Password='1234', Fullname='Zaeem6100', Address='qwerty',
+    model = User(Username='temp', Password='temp', Fullname='temp', Address='qwerty',
                  phone_number='123123',
-                 email='zaeem@zaeem.com', user_type='Admin')
+                 email='temp@temp.com', user_type='Admin')
     # get directory of project and append Database/AMUser.txt to it
     print(model.write_to_file())
     # print(model.read_from_file())
