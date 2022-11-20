@@ -6,8 +6,18 @@ from tkinter import ttk
 def Table(data, columns, headings, title="Table"):
     ws = Tk()
     ws.title(title)
-    ws.geometry('500x500')
+    ws.geometry('1398x200')
     ws['bg'] = '#AC99F2'
+    # Making gradient frame
+    j = 0
+    r = 10
+    for i in range(100):
+        c = str(222222 + r)
+        Frame(ws, width=1120, height=1600, bg="#" + c).place(x=j, y=0)
+        j = j + 10
+        r = r + 1
+
+
     game_frame = Frame(ws)
     game_frame.pack()
     # scrollbar
@@ -21,16 +31,24 @@ def Table(data, columns, headings, title="Table"):
     game_scroll.config(command=my_game.yview)
     game_scroll.config(command=my_game.xview)
     my_game['columns'] = columns
-    my_game.heading("#0", text="", anchor=CENTER)
+    my_game.heading("#0", text="Sr#", anchor=W)
     for i in headings:
-        my_game.heading(i, text=i, anchor=CENTER)
+        my_game.heading(i, text=i, anchor=W)
 
     for i in range(len(data)):
-        my_game.insert(parent='', index='end', iid=i, text="", values=data[i])
+        # add serial number in first column
+        my_game.insert(parent='', index='end', iid=i, text=i + 1, values=data[i])
         pass
 
     my_game.pack()
     ws.mainloop()
 
 
-Table(None)
+if __name__ == '__main__':
+    import Model.User as u
+    user = u.User()
+    data = user.readAllUsers()
+    print(data)
+    columns = ('User Name', 'Password', 'Full Name', 'Address', 'Phone Number', 'Email')
+    headings = ('User Name', 'Password', 'Full Name', 'Address', 'Phone Number', 'Email')
+    Table(data, columns, headings , title="Users")

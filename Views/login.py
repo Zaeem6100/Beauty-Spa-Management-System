@@ -1,7 +1,9 @@
 from tkinter import *
 from tkinter import messagebox
 
+# variable for  entry 1
 e1 = None
+# variable for  entry 2
 e2 = None
 
 
@@ -16,12 +18,14 @@ def Login():
     r = 10
     for i in range(100):
         c = str(222222 + r)
-        Frame(w, width=10, height=500, bg="#" + c).place(x=j, y=0)
+        Frame(w, width=10, height=600, bg="#" + c).place(x=j, y=0)
         j = j + 10
         r = r + 1
 
-    Frame(w, width=250, height=400, bg='white').place(x=50, y=50)
+    #  frame for white screen
+    Frame(w, width=250, height=500, bg='white').place(x=50, y=50)
 
+    #  label for username
     l1 = Label(w, text='Username', bg='white')
     l = ('Consolas', 13)
     l1.config(font=l)
@@ -48,15 +52,57 @@ def Login():
     Frame(w, width=180, height=2, bg='#141414').place(x=80, y=332)
     Frame(w, width=180, height=2, bg='#141414').place(x=80, y=252)
 
-    # Command
+    # button Action for Sign Up
+    def Sign():
+        w.destroy()
+        import SignUp as s
+        s.SignUp()
+
+    # button Action for Login
     def cmd():
-        if e1.get() == 'zaeem' and e2.get() == '123':
-            messagebox.showinfo("LOGIN SUCCESSFULLY", "         W E L C O M E        ")
-            w.destroy()
-            q = Tk()
-            q.mainloop()
-        else:
-            messagebox.showwarning("LOGIN FAILED", "        PLEASE TRY AGAIN        ")
+        # import function
+        from Model import User
+        u = User.User()
+        # read data from file
+        user = u.readAllUsers()
+        # check if username and password is correct
+        for i in user:
+            if i.Username == e1.get() and i.Password == e2.get():
+                messagebox.showinfo("LOGIN SUCCESSFULLY", "         W E L C O M E        " + i.user_type.upper())
+                if i.user_type == 'Admin':
+                    w.destroy()
+                    from Views import manager as m
+                    m.manager()
+                    break
+                elif i.user_type == 'customer':
+                    w.destroy()
+                    from Views import customer
+                    customer.customer()
+
+        messagebox.showwarning("LOGIN FAILED", "        PLEASE TRY AGAIN        ")
+
+    def bttn2(x, y, text, ecolor, lcolor):
+        def on_entera2(e):
+            myButton2['background'] = ecolor  # ffcc66
+            myButton2['foreground'] = lcolor  # 000d33
+
+        def on_leavea2(e):
+            myButton2['background'] = lcolor
+            myButton2['foreground'] = ecolor
+
+        myButton2 = Button(w, text=text,
+                           width=20,
+                           height=2,
+                           fg=ecolor,
+                           border=0,
+                           bg=lcolor,
+                           activeforeground=lcolor,
+                           activebackground=ecolor,
+                           command=Sign)
+
+        myButton2.bind("<Enter>", on_entera2)
+        myButton2.bind("<Leave>", on_leavea2)
+        myButton2.place(x=x, y=y)
 
     # Button_with hover effect
     def bttn(x, y, text, ecolor, lcolor):
@@ -80,10 +126,10 @@ def Login():
 
         myButton1.bind("<Enter>", on_entera)
         myButton1.bind("<Leave>", on_leavea)
-
         myButton1.place(x=x, y=y)
 
     bttn(100, 375, 'L O G I N', 'white', '#994422')
+    bttn2(100, 425, 'S I G N U P', 'white', '#994422')
     w.mainloop()
 
 

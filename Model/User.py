@@ -11,62 +11,6 @@ class User:
         self.email = email
         self.user_type = user_type
 
-    # @property
-    # def username(self):
-    #     return self.Username
-    #
-    # @username.setter
-    # def username(self, username):
-    #     self.Username = username
-    #
-    # @property
-    # def password(self):
-    #     return self.Password
-    #
-    # @password.setter
-    # def password(self, password):
-    #     self.Password = password
-    #
-    # @property
-    # def fullname(self):
-    #     return self.Fullname
-    #
-    # @fullname.setter
-    # def fullname(self, fullname):
-    #     self.Fullname = fullname
-    #
-    # @property
-    # def address(self):
-    #     return self.Address
-    #
-    # @address.setter
-    # def address(self, address):
-    #     self.Address = address
-    #
-    # @property
-    # def phone_number(self):
-    #     return self.phone_number
-    #
-    # @phone_number.setter
-    # def phone_number(self, phone_number):
-    #     self.phone_number = phone_number
-    #
-    # @property
-    # def email(self):
-    #     return self.email
-    #
-    # @email.setter
-    # def email(self, email):
-    #     self.email = email
-    #
-    # @property
-    # def user_type(self):
-    #     return self.user_type
-    #
-    # @user_type.setter
-    # def user_type(self, user_type):
-    #     self.user_type = user_type
-
     def write_to_file(self, filename=os.path.join(os.path.dirname(os.path.dirname(__file__)), "Database\AMUser.txt")):
         #  check if UserName already exists in file
         if not self.read_from_file(filename):
@@ -100,10 +44,10 @@ class User:
                 line = line.split(",")
                 user = User(line[0], line[1], line[2], line[3], line[4], line[5], line[6])
                 data.append(user)
-                print(line)
         return data
 
-    def checkUsernameExists(self, filename=os.path.join(os.path.dirname(os.path.dirname(__file__)), "Database\AMUser.txt")):
+    def checkUsernameExists(self, filename=os.path.join(os.path.dirname(os.path.dirname(__file__)), "Database\AMUser"
+                                                                                                    ".txt")):
         with open(filename, "r") as file:
             for line in file:
                 line = line.strip()
@@ -112,13 +56,23 @@ class User:
                     return True
             return False
 
+    def convertToList(self):
+        return [self.Username, self.Password, self.Fullname, self.Address, self.phone_number, self.email, self.user_type]
+
+    def convertToListForUser(self):
+        return [self.Fullname, self.Address, self.phone_number, self.email]
+
+    def __str__(self):
+        return f"{self.Username},{self.Password},{self.Fullname},{self.Address},{self.phone_number},{self.email}," \
+               f"{self.user_type} "
+
 
 if __name__ == '__main__':
     model = User(Username='zaeem12445678932', Password='1234', Fullname='Zaeem6100', Address='qwerty',
                  phone_number='123123',
                  email='zaeem@zaeem.com', user_type='Admin')
     # get directory of project and append Database/AMUser.txt to it
-    # print(model.write_to_file())
+    print(model.write_to_file())
     # print(model.read_from_file())
     # model.write_to_file()
     # print(model.readAllUsers())

@@ -1,2 +1,6 @@
 zaeem1244567893,1234,Zaeem6100,qwerty,123123,zaeem@zaeem.com,Admin
 zaeem12445678932,1234,Zaeem6100,qwerty,123123,zaeem@zaeem.com,Admin
+zaeem12445678932,1234,Zaeem61003,qwerty,123123,zaeem@zaeem.com,customer
+temp,temp,temp1,t2,0300,temp@temp.com,customer
+beauty1,beauty1,beauty1,beauty1,0300,beauty1@temp.com,beautician
+ad2,ad2,ad2,ad2,123123,ad2@zaeem.com,Admin
