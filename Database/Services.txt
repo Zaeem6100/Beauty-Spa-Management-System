@@ -1,3 +1,6 @@
 Haircut,20
 Haircut,20
 class1,50
+sdsad,23
+sdsad,23
+sdsad,23

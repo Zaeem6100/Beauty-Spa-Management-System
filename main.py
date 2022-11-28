@@ -1,4 +1,4 @@
-from Views import login
+from Views.login import Login
 
 if __name__ == '__main__':
-    login.Login()
+    Login.loginView()
