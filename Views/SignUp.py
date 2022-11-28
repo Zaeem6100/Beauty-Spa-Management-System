@@ -113,6 +113,7 @@ def SignUp():
         print(v.get())
         from Model.User import User
         # check if all fields are filled
+
         if username.get() == '' or email.get() == '' or fullname.get() == '' or address.get() == '' or phone.get() == '' or password.get() == '':
             messagebox.showerror('Error', 'Please fill all the fields')
 

@@ -54,7 +54,7 @@ def Login():
 
     # button Action for Sign Up
     def Sign():
-        import SignUp as s
+        import Views.SignUp as s
         s.SignUp()
 
     # button Action for Login

@@ -1,14 +1,27 @@
 import os
 
 
-class User:
-    def __init__(self, Username='', Password='', Fullname='', Address='', phone_number='', email='', user_type=''):
+class Person:
+    def __init__(self, Username='', Password='', Fullname='', Address='', phone_number='', email=''):
         self.Username = Username
         self.Password = Password
         self.Fullname = Fullname
         self.Address = Address
         self.phone_number = phone_number
         self.email = email
+
+    def __str__(self):
+        return f"{self.Username} - {self.Password} - {self.Fullname} - {self.Address} - {self.phone_number} - " \
+               f"{self.email} "
+
+    def __repr__(self):
+        return f"{self.Username} - {self.Password} - {self.Fullname} - {self.Address} - {self.phone_number} - " \
+               f"{self.email} "
+
+
+class User(Person):
+    def __init__(self, Username='', Password='', Fullname='', Address='', phone_number='', email='', user_type=''):
+        super().__init__(Username, Password, Fullname, Address, phone_number, email)
         self.user_type = user_type
 
     def write_to_file(self, filename=os.path.join(os.path.dirname(os.path.dirname(__file__)), "Database\AMUser.txt")):
@@ -52,12 +65,13 @@ class User:
             for line in file:
                 line = line.strip()
                 line = line.split(",")
-                if line[0] == self.Username:
+                if line[0] == self:
                     return True
             return False
 
     def convertToList(self):
-        return [self.Username, self.Password, self.Fullname, self.Address, self.phone_number, self.email, self.user_type]
+        return [self.Username, self.Password, self.Fullname, self.Address, self.phone_number, self.email,
+                self.user_type]
 
     def convertToListForUser(self):
         return [self.Fullname, self.Address, self.phone_number, self.email]
